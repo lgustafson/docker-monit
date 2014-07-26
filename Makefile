@@ -6,7 +6,7 @@ VERSION = 0.1.0
 all: build
 
 build:
-docker build -t $(NAME):$(VERSION) --rm image
+	docker build -t $(NAME):$(VERSION) --rm image
 
 tag_latest:
-docker tag $(NAME):$(VERSION) $(NAME):latest
+	docker tag $(NAME):$(VERSION) $(NAME):latest
