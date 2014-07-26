@@ -1,0 +1,2 @@
+include /home/monit/conf/monitrc.d/*.conf
+include /home/monit/conf/monit.d/*.conf
