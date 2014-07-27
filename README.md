@@ -60,7 +60,7 @@ Exposed Volumes:
 Dependencies
 ------------
 
-  * [phusion/baseimage](https://github.com/phusion/baseimage-docker)
+  * [phusion/baseimage-docker](https://github.com/phusion/baseimage-docker)
 
 Examples
 --------
