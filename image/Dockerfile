@@ -1,4 +1,4 @@
-FROM phusion/baseimage:0.9.12
+FROM phusion/baseimage:0.9.13
 
 MAINTAINER Leif Gustafson <leif@leifgustafson.com>
 
@@ -20,8 +20,6 @@ RUN chown monit:monit /home/monit/conf/monitrc && \
 
 ADD 001-daemon.conf /home/monit/conf/monitrc.d/
 ADD 002-http.conf /home/monit/conf/monitrc.d/
-
-VOLUME /home/monit/conf/monit.d
 
 RUN mkdir /etc/service/monit
 ADD monit.sh /etc/service/monit/run
