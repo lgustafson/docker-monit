@@ -3,9 +3,8 @@ A minimal base image for monit
 
 docker-monit is a [Docker](http://www.docker.io) image that is configured
 to be used directly or as a base for more customized applications for
-[monit](http://www.mmonit.com/monit), the system monitoring daemon.
-
-docker-monit is available for pulling from
+[monit](http://www.mmonit.com/monit), the monitoring daemon.  docker-monit
+is available for pulling from
 [the Docker registry](https://index.docker.io/u/lgustafson/docker-monit)
 
 Overview
@@ -15,9 +14,12 @@ This image installs monit to the following location:
 
   * /opt/monit
 
-Monit is configured to be executed and managed by the init system of the
-image, /sbin/my_init.  It will be executed as a non-privileged user named
-monit.  The monit configuration file lives at /home/monit/conf/monitrc.
+Monit is configured to be executed and managed by the runit, the init
+system of phusion/baseimage-docker.  It will be executed as a
+non-privileged user named monit.  The monit configuration file lives
+at:
+
+  * /home/monit/conf/monitrc.
 
 The supplied monitrc simply includes all .conf files at the following
 locations:
@@ -60,7 +62,7 @@ Exposed Volumes:
 Dependencies
 ------------
 
-  * [phusion/baseimage](https://github.com/phusion/baseimage-docker)
+  * [phusion/baseimage-docker](https://github.com/phusion/baseimage-docker)
 
 Examples
 --------
