@@ -1,10 +1,10 @@
 #!/bin/bash
 set -e
 
-monit_version="5.9"
+monit_version="5.12.2"
 monit_base_url="http://www.mmonit.com/monit/dist/binary/${monit_version}/"
 monit_tarball="monit-${monit_version}-linux-x64.tar.gz"
-monit_sha256="${monit_tarball}.sha256"
+monit_sha256="/tmp/${monit_tarball}.sha256"
 monit_user="monit"
 monit_group="monit"
 monit_user_home="/home/monit"
@@ -18,8 +18,7 @@ monit_install_root="/opt"
 
 cd /tmp
 
-curl -OO "${monit_base_url}/${monit_tarball}" \
-  "${monit_base_url}/${monit_sha256}"
+curl -O "${monit_base_url}/${monit_tarball}"
 
 sha256sum --quiet -c "${monit_sha256}"
 
@@ -31,4 +30,4 @@ ln -s "${monit_install_root}/monit-${monit_version}" \
 install -o "${monit_user}" -g "${monit_group}" -m "${monit_include_perms}" \
   -d "${monit_include_path}"
 
-rm "/tmp/${monit_tarball}" "/tmp/${monit_sha256}"
+rm "/tmp/${monit_tarball}" "${monit_sha256}"
