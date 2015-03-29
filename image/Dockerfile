@@ -1,4 +1,4 @@
-FROM phusion/baseimage:0.9.13
+FROM phusion/baseimage:0.9.16
 
 MAINTAINER Leif Gustafson <leif@leifgustafson.com>
 
@@ -7,6 +7,8 @@ ENV HOME /root
 CMD ["/sbin/my_init"]
 
 EXPOSE 2812
+
+ADD monit-5.12.2-linux-x64.tar.gz.sha256 /tmp/
 
 ADD install-monit.sh /root/install-monit.sh
 RUN /root/install-monit.sh && \
