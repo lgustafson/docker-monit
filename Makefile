@@ -9,4 +9,4 @@ build:
 	docker build -t $(NAME):$(VERSION) --rm image
 
 tag_latest:
-	docker tag $(NAME):$(VERSION) $(NAME):latest
+	docker tag -f $(NAME):$(VERSION) $(NAME):latest
