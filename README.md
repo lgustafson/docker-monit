@@ -7,6 +7,8 @@ to be used directly or as a base for more customized applications for
 is available for pulling from
 [the Docker registry](https://index.docker.io/u/lgustafson/docker-monit)
 
+This image includes monit version 5.12.2.
+
 Overview
 --------
 
@@ -55,9 +57,6 @@ Docker Configuration
 
 Exposed Ports:
   * 2812 (Monit httpd)
-
-Exposed Volumes:
-  * /home/monit/conf/monit.d
 
 Dependencies
 ------------
