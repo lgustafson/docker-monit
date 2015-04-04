@@ -8,8 +8,6 @@ CMD ["/sbin/my_init"]
 
 EXPOSE 2812
 
-ADD monit-5.12.2-linux-x64.tar.gz.sha256 /tmp/
-
 ADD install-monit.sh /root/install-monit.sh
 RUN /root/install-monit.sh && \
   install -o monit -g monit -m 0750 -d /home/monit/conf
