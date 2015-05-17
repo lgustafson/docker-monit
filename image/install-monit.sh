@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-monit_version="5.12.2"
+monit_version="5.13"
 monit_base_url="http://www.mmonit.com/monit/dist/binary/${monit_version}/"
 monit_tarball="monit-${monit_version}-linux-x64.tar.gz"
 monit_sha256="${monit_tarball}.sha256"
