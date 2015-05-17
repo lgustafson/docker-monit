@@ -7,7 +7,7 @@ to be used directly or as a base for more customized applications for
 is available for pulling from
 [the Docker registry](https://index.docker.io/u/lgustafson/docker-monit)
 
-This image includes monit version 5.12.2.
+This image includes monit version 5.13
 
 Overview
 --------

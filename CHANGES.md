@@ -1,9 +1,14 @@
+= 0.4.0 / 2015-05-17
+
+  * Include OS updates in the Dockerfile (Leif Gustafson)
+  * Update to upstream monit 5.13 (Leif Gustafson)
+
 = 0.3.1 / 2015-04-04
 
   * Revert to downloading the sha256 checksum during build as upstream provides
-    them again
-  * Update Makefile
-  * Update documentation
+    them again (Leif Gustafson)
+  * Update Makefile (Leif Gustafson)
+  * Update documentation (Leif Gustafson)
 
 = 0.3.0 / 2015-03-28
 
