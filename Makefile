@@ -1,5 +1,5 @@
 NAME = lgustafson/docker-monit
-VERSION = 0.4.0
+VERSION = 0.4.1
 
 .PHONY: all build tag_latest
 
