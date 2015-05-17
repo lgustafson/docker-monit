@@ -1,3 +1,7 @@
+= 0.4.1 / 2015-05-17
+
+  * Use https URL for downloading monit
+
 = 0.4.0 / 2015-05-17
 
   * Include OS updates in the Dockerfile (Leif Gustafson)
