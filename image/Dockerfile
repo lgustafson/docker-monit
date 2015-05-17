@@ -8,6 +8,8 @@ CMD ["/sbin/my_init"]
 
 EXPOSE 2812
 
+RUN apt-get update && apt-get -y upgrade
+
 ADD install-monit.sh /root/install-monit.sh
 RUN /root/install-monit.sh && \
   install -o monit -g monit -m 0750 -d /home/monit/conf
