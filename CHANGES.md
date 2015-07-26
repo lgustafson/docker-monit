@@ -1,6 +1,12 @@
+= 0.5.0 / 2015-07-26
+
+  * Use ubuntu:14.04.2 as the base of this image (Leif Gustafson)
+  * Update to monit 5.14 (Leif Gustafson)
+  * monit runs as root and pid 1 in init mode (Leif Gustafson)
+
 = 0.4.1 / 2015-05-17
 
-  * Use https URL for downloading monit
+  * Use https URL for downloading monit (Leif Gustafson)
 
 = 0.4.0 / 2015-05-17
 

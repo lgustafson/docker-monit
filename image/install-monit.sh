@@ -1,34 +1,36 @@
-#!/bin/bash
+#!/bin/sh
 set -e
 
-monit_version="5.13"
+monit_version="5.14"
 monit_base_url="https://www.mmonit.com/monit/dist/binary/${monit_version}/"
 monit_tarball="monit-${monit_version}-linux-x64.tar.gz"
 monit_sha256="${monit_tarball}.sha256"
-monit_user="monit"
-monit_group="monit"
-monit_user_home="/home/monit"
-monit_user_shell="/bin/false"
-monit_include_path="/home/monit/monit.d"
+monit_user="root"
+monit_group="root"
+monitrc_include_path="/etc/monitrc.d"
+monit_include_path="/etc/monit.d"
+monit_lib_path="/var/monit"
 monit_include_perms="0750"
 monit_install_root="/opt"
 
-/usr/sbin/useradd -c "Monit daemon" -m -d "${monit_user_home}" \
-  -s "${monit_user_shell}" -r -U "${monit_user}"
-
 cd /tmp
 
-curl -OO "${monit_base_url}/${monit_tarball}" \
-  "${monit_base_url}/${monit_sha256}"
+# Download monit and monit checksum
+curl -OO "${monit_base_url}/${monit_tarball}" "${monit_base_url}/${monit_sha256}"
 
-sha256sum --quiet -c "${monit_sha256}"
+# Verify checksum
+sha256sum -c --quiet "${monit_sha256}"
 
+# Unpack monit in $monit_install_root
 tar -C "${monit_install_root}" -zxvf "${monit_tarball}"
 
+# Symlink version-specific monit directory to generic name
 ln -s "${monit_install_root}/monit-${monit_version}" \
   "${monit_install_root}/monit"
 
+# Create monit.d and monitrc.d
 install -o "${monit_user}" -g "${monit_group}" -m "${monit_include_perms}" \
-  -d "${monit_include_path}"
+  -d "${monit_include_path}" "${monitrc_include_path}" "${monit_lib_path}"
 
+# Cleanup
 rm "/tmp/${monit_tarball}" "/tmp/${monit_sha256}"
