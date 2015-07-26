@@ -1,5 +1,5 @@
-A minimal base image for monit
-==============================
+A base image for monit
+======================
 
 docker-monit is a [Docker](http://www.docker.io) image that is configured
 to be used directly or as a base for more customized applications for
@@ -7,7 +7,7 @@ to be used directly or as a base for more customized applications for
 is available for pulling from
 [the Docker registry](https://index.docker.io/u/lgustafson/docker-monit)
 
-This image includes monit version 5.13
+This image includes monit version 5.14
 
 Overview
 --------
@@ -16,18 +16,16 @@ This image installs monit to the following location:
 
   * /opt/monit
 
-Monit is configured to be executed and managed by the runit, the init
-system of phusion/baseimage-docker.  It will be executed as a
-non-privileged user named monit.  The monit configuration file lives
-at:
+Monit is configured to be executed as root within the container and will be run
+as pid 1.The monit configuration file lives at:
 
-  * /home/monit/conf/monitrc.
+  * /etc/monitrc
 
 The supplied monitrc simply includes all .conf files at the following
 locations:
 
-  * /home/monit/conf/monitrc.d
-  * /home/monit/conf/monit.d
+  * /etc/monitrc.d
+  * /etc/monit.d
 
 
 Monit Configuration
@@ -37,20 +35,16 @@ By default, monit is configured as follows:
 
   * HTTP console running on port 2812
       * Username "admin" with password "monit" for admin access
-      * Users who are part of the monit group have admin access
-      * Users who are part of the users group have readonly access
   * Monit cycle is set to 60 seconds
 
-Config files in /home/monit/conf/monitrc.d typically should define the basic
-runtime configuration of monit itself, while config files in
-/home/monit/conf/monit.d should be service checks.  This allows a user to use
-the basic runtime configuration supplied by monit and add monit checks by
-mounting a directory of config files (from the host, for instance) at
-/home/monit/conf/monit.d.
+Config files in /etc/monitrc.d typically should define the basic runtime
+configuration of monit itself, while config files in /etc/monit.d should be
+service checks.  This allows a user to use the basic runtime configuration
+supplied by monit and add monit checks by mounting a directory of config files
+(from the host, for instance) at /etc/monit.d.
 
-Along the same lines, the runtime configuration can be
-completely replaced by mounting a configuration directory to
-/home/monit/conf/monitrc.d.
+Along the same lines, the runtime configuration can be completely replaced by
+mounting a configuration directory to /etc/monitrc.d.
 
 Docker Configuration
 --------------------
@@ -61,7 +55,7 @@ Exposed Ports:
 Dependencies
 ------------
 
-  * [phusion/baseimage-docker](https://github.com/phusion/baseimage-docker)
+  * [ubuntu](https://registry.hub.docker.com/_/ubuntu/)
 
 Examples
 --------
@@ -70,4 +64,4 @@ Examples
 	# properties:
 	#   * exposes container port 2812 to the host
 	#   * injects monit check configurations from the host at /tmp/monit.d
-    docker run --rm --name "test-docker-monit" -p 2812:2812 -v /tmp/monit.d/:/home/monit/conf/monit.d lgustafson/docker-monit:latest
+    docker run --rm --name "test-docker-monit" -p 2812:2812 -v /tmp/monit.d/:/etc/monit.d lgustafson/docker-monit:latest
